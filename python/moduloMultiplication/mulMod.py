@@ -2,8 +2,8 @@ import math
 
 import numpy as np
 
-a =45 #45
-b =15 #15
+a =2**2000-1 #45
+b =3 #15
 
 p=1   #47
 wynik=(a*b)%p
@@ -55,7 +55,7 @@ print("s_temp=",s_temp)
 
 
 while s_temp>2*p:
-    print("--------------------------Pętla sie wykonała")
+    print("-----------------------------------------Pętla sie wykonała")
     s_temp = bin(s_temp)[2:]
     n_temp=len(s_temp)
     k_temp=math.ceil(n_temp/r)
