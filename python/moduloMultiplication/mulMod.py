@@ -1,89 +1,58 @@
-import math
 
-import numpy as np
+a = 53
+b = 19
 
-a =2**2000-1 #45
-b =3 #15
+print("a= ", a, "b= ", b)
 
-p=1   #47
-wynik=(a*b)%p
 a = bin(a)[2:]
-
-n=len(a)
-r=math.ceil(math.log2(p))
-r=3
-k= math.ceil(n/r)
-
-
-
-if len(a) < k*r:
-    a = (k * r - n) * "0" + a
-
-aList=[]
-for i in range(1, k + 1):
-    aList.append(a[len(a) - i * r:len(a) - (i - 1) * r])
-
-print("a =",a)
-print("A1,A2,... =",aList)
-
-
-
-
-
-
-
 b = bin(b)[2:]
-if len(b) < k*r:
-    b = (k * r - len(b)) * "0" + b
 
-bList=[]
-for i in range(1, k + 1):
-    bList.append(b[len(b) - i * r:len(b) - (i - 1) * r])
+if len(a) > 6:
+    print("Za duże a")
+    exit()
+if len(b) > 6:
+    print("Za duże b")
+    exit()
 
-print("b =",b)
-print("B1,B2,... =",bList)
+if len(a) < 6:
+    a = (6 - len(a)) * "0" + a
+if len(b) < 6:
+    b = (6 - len(b)) * "0" + b
 
+a = list(a)
+b = list(b)
 
-s_temp=0
+print("a= ", a, "b= ", b)
 
-for i in range(1,k+1):
-    for j in range(1,k+1):
-        s_temp+=(int(aList[i-1],2)*int(bList[j-1],2)*(2**(3*(i+j-2)))%p)
+label1 = int(int(''.join(map(str, a[3:6])), 2)) * int(int(''.join(map(str, b[3:6])), 2))
+label2 = (int(int(''.join(map(str, a[3:6])), 2)) * int(int(''.join(map(str, b[:3])), 2)) * 8) % 47
+label3 = (int(int(''.join(map(str, a[:3])), 2)) * int(int(''.join(map(str, b[3:6])), 2)) * 8) % 47
+label4 = (int(int(''.join(map(str, a[:3])), 2)) * int(int(''.join(map(str, b[:3])), 2)) * 17) % 47
 
+temp_R_1 = label1 + label2 + label3 + label4
+temp_R_1 = bin(temp_R_1)[2:]
 
-print("s_temp=",s_temp)
+if len(temp_R_1) < 8:
+    temp_R_1 = (8 - len(temp_R_1)) * "0" + temp_R_1
 
+label5 = (int(''.join(map(str, temp_R_1[2:5])), 2) * 8) % 47
+label6 = (int(''.join(map(str, temp_R_1[:2])), 2) * 17) % 47
 
-while s_temp>2*p:
-    print("-----------------------------------------Pętla sie wykonała")
-    s_temp = bin(s_temp)[2:]
-    n_temp=len(s_temp)
-    k_temp=math.ceil(n_temp/r)
+temp_R_2 = int(temp_R_1[5:], 2) + label5 + label6
 
-    if len(s_temp)<k_temp*r:
-        s_temp = (k_temp * r - n_temp) * "0" + s_temp
-
-    sList=[]
-    for i in range(1, k_temp + 1):
-        sList.append(s_temp[len(s_temp) - i * r:len(s_temp) - (i - 1) * r])
-
-    newS_temp=0
-    for i in range(1,k_temp+1):
-        newS_temp+=int(sList[i-1],2)*(pow(2,r*(i-1))%p)
-    print("s_temp",int(s_temp,2))
-    s_temp=newS_temp
-
-
-
-if p<=s_temp:
-    s=s_temp-p
+if temp_R_2 >= 47:
+    temp_R = temp_R_2 - 47
 else:
-    s=s_temp
+    temp_R = temp_R_2
 
+R = temp_R
 
-print("s               =",s)
-print("prawidlowy wynik=",wynik)
-if wynik!=s:
-    print("WYNIK SIE NIE ZGADZA")
-else:
-    print("WYNIK SIE ZGADZA")
+print("R =", R)
+
+a = ''.join(str(bit) for bit in a)
+a = int(a, 2)
+
+b = ''.join(str(bit) for bit in b)
+b = int(b, 2)
+
+print("Poprawny wynik:", (a * b) % 47)
