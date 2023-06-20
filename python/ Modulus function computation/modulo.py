@@ -30,7 +30,7 @@ print("binary s",bin(s)[2:])
 s_temp=s
 print("s_temp=", s_temp, "2p=",2*p)
 print("")
-while s_temp>2*p:
+while s_temp>=2*p:
     print("--------------------------Pętla sie wykonała")
     s_temp = bin(s_temp)[2:]
     n_temp=len(s_temp)
