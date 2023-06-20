@@ -1,4 +1,4 @@
-module mult_mod_47_bits (A,B,R) ;
+ module mult_mod_47_bits (A,B,R) ;
 input [6:1] A, B;
 output [6:1] R;
 wire [6:1] r1, r2, r3, r4, r5, r6;
