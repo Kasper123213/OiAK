@@ -32,8 +32,8 @@ assign S_temp_5 = S_temp_4[6:1] + S_temp_4[8:7]*5'b10001;
 
 always @(S_temp_5)
 begin 
-	if (S_temp_5 >= 6'b111111)
-		S_temp <= S_temp_5 - 6'b111111;
+	if (S_temp_5 >= 6'b101111)
+		S_temp <= S_temp_5 - 6'b101111;
 	else
 		S_temp <= S_temp_5;
 end
@@ -52,7 +52,7 @@ module testbench;
   );
 
   initial begin
-    X = 123456789; // Przykładowa wartość X
+    X = 120; // Przykładowa wartość X
     #10000; // Symulacja zostanie zatrzymana po 10000 jednostkach czasu
     $display("S = %d", S);
     $finish;

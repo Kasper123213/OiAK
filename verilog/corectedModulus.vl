@@ -1,0 +1,64 @@
+module x_100_mod_47(X, P, S);
+
+input [100:1] X;
+input [6:1] P;
+output [6:1] S;
+wire [14:1] S_temp_1;
+wire [11:1] S_temp_2;
+wire [9:1] S_temp_3;
+wire [8:1] S_temp_4;
+wire [7:1] S_temp_5;
+reg [6:1] S_temp;
+reg [6:1] S_final;
+
+assign S_temp_1 = X[6:1]%P + X[12:7]*((2**6)%P) +
+					X[18:13]*((2**12)%P) + X[24:19]*((2**18)%P) +
+					X[30:25]*((2**24)%P) + X[36:31]*((2**30)%P) +
+					X[42:37]*((2**36)%P) + X[48:43]*((2**42)%P) +
+					X[54:49]*((2**48)%P) + X[60:55]*((2**54)%P) +
+					X[66:61]*((2**60)%P) + X[72:67]*((2**66)%P) +
+					X[78:73]*((2**72)%P) + X[84:79]*((2**78)%P) +
+					X[90:85]*((2**84)%P) + X[96:91]*((2**90)%P) +
+					X[100:97]*((2**96)%P);
+
+assign S_temp_2 = S_temp_1[6:1]%P +
+					S_temp_1[12:7]*((2**6)%P) +
+					S_temp_1[14:13]*((2**12)%P);
+
+assign S_temp_3 = S_temp_2[6:1]%P + S_temp_2[11:7]*((2**6)%P);
+
+assign S_temp_4 = S_temp_3[6:1]%P + S_temp_3[9:7]*((2**6)%P);
+
+assign S_temp_5 = S_temp_4[6:1]%P + S_temp_4[8:7]*((2**6)%P);
+
+always @(S_temp_5)
+begin
+	if (S_temp_5 >= P)
+		S_temp <= S_temp_5 - P;
+	else
+		S_temp <= S_temp_5;
+end
+
+assign S = S_temp;
+
+endmodule
+
+module testbench;
+  reg [100:1] X;
+  reg [6:1] P;
+  wire [6:1] S;
+
+  x_100_mod_47 dut (
+    .X(X),
+    .P(P),
+    .S(S)
+  );
+
+  initial begin
+    X = 12910; // Przykładowa wartość X
+    P = 11; // Przykładowa wartość P
+    #10000; // Symulacja zostanie zatrzymana po 10000 jednostkach czasu
+    $display("S = %d", S);
+    $finish;
+  end
+endmodule

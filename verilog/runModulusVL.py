@@ -1,13 +1,15 @@
 import os
 
-answer = int(input("Co otworzyć? 1-obliczanie modułu, 2-mnożenie, 3-mnożenie dla zmiennego p"))
+answer = int(input("Co otworzyć? 1-obliczanie modułu, 2-mnożenie, 3-mnożenie dla zmiennego p, 4-bliczanie modułu dla zmiennego p"))
 
 if answer == 1:
     filename = "modulus.vl"
-elif answer==2:
+elif answer == 2:
     filename = "multModulus.vl"
-else:
+elif answer == 3:
     filename = "corectedMultModulus.vl"
+else:
+    filename = "corectedModulus.vl"
 
 
 if os.path.exists("modulus"):

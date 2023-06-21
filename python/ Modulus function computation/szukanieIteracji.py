@@ -23,7 +23,7 @@ def petla(x, p):
 
     s_temp = s
 
-    while s_temp > 2 * p:
+    while s_temp >= 2 * p:
         liczbaIteracji += 1
         s_temp = bin(s_temp)[2:]
         n_temp = len(s_temp)
