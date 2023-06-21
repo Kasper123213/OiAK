@@ -1,8 +1,9 @@
 
 a = 53
 b = 19
+p = 13
 
-print("a= ", a, "b= ", b)
+print("R powinno wyjść",(a*b)%47)
 
 a = bin(a)[2:]
 b = bin(b)[2:]
@@ -22,7 +23,6 @@ if len(b) < 6:
 a = list(a)
 b = list(b)
 
-print("a= ", a, "b= ", b)
 
 label1 = int(int(''.join(map(str, a[3:6])), 2)) * int(int(''.join(map(str, b[3:6])), 2))
 label2 = (int(int(''.join(map(str, a[3:6])), 2)) * int(int(''.join(map(str, b[:3])), 2)) * 8) % 47
@@ -49,10 +49,4 @@ R = temp_R
 
 print("R =", R)
 
-a = ''.join(str(bit) for bit in a)
-a = int(a, 2)
 
-b = ''.join(str(bit) for bit in b)
-b = int(b, 2)
-
-print("Poprawny wynik:", (a * b) % 47)

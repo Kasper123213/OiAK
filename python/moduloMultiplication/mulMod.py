@@ -1,4 +1,3 @@
-
 a = 53
 b = 19
 
@@ -46,5 +45,4 @@ else:
 R = temp_R
 
 print("R =", R)
-
 
